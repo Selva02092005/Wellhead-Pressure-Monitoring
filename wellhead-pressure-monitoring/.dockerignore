@@ -1,0 +1,17 @@
+.git
+.gitignore
+.venv
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+frontend/node_modules
+frontend/dist
+backend/.venv
+simulator/.venv
+log.txt
+log2.txt
+log_sim.txt
+log_sim_new.txt
+ps2.txt
+ps_state.txt
