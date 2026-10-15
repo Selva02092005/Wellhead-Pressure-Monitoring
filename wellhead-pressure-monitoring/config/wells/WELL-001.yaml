@@ -1,0 +1,30 @@
+well_id: WELL-001
+name: Well Alpha
+location: Field-A
+completion_type: Dual Completion
+annuli:
+  A:
+    enabled: true
+    maasp: 2500
+  B:
+    enabled: true
+    maasp: 3000
+  C:
+    enabled: false
+    maasp: null
+tubing:
+  maop: 5000
+  operating_min: 1000
+  operating_max: 4000
+flowline:
+  operating_min: 500
+  operating_max: 2000
+choke:
+  operating_min: 300
+  operating_max: 1500
+alarm_thresholds:
+  tubing:
+    hi: 4000
+    hihi: 4500
+    lo: 1000
+    lolo: 700
