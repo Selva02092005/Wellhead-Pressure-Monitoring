@@ -1,38 +1,28 @@
-# Wellhead Pressure Monitoring Dashboard
+# 🛢️ Wellhead Pressure Monitoring Application
 
-A complete, production-style Wellhead Pressure Monitoring Dashboard for monitoring oil and gas wells in real-time.
+This directory contains the complete source code for the **Wellhead Pressure Monitoring Application**, including the backend services, frontend dashboard, RTU telemetry simulator, container configurations, and database initialization.
 
-## Architecture
+For full project documentation, architectural diagrams, API references, and technical reports, please see the [Root README.md](../README.md).
 
-- **Frontend:** React + Vite, TailwindCSS, ECharts, WebSockets.
-- **Backend:** FastAPI, Python, Pydantic, SQLAlchemy.
-- **Simulator (RTU):** Python, Paho MQTT.
-- **Real-Time Delivery:** Redis Pub/Sub, Mosquitto MQTT.
-- **Database:** PostgreSQL (with TimescaleDB extension).
+---
 
-## Directory Structure
+## Quick Navigation
 
-```text
-wellhead-pressure-monitoring/
-│
-├── frontend/           # React + Vite Application
-├── backend/            # FastAPI Backend
-├── simulator/          # Python RTU Data Simulator
-├── config/             # YAML configurations
-├── mosquitto/          # MQTT configurations
-├── database/           # Postgres Init scripts
-├── docker/             # Nginx, Supervisor, and Entrypoint scripts
-├── Dockerfile          # Unified all-in-one container Dockerfile
-└── .env.example
-```
+- [`backend/`](./backend/) - FastAPI application (Python 3.12, SQLAlchemy, Pydantic, WebSockets)
+- [`frontend/`](./frontend/) - React 18 single page application (Vite, TailwindCSS, Apache ECharts)
+- [`simulator/`](./simulator/) - Multi-well RTU telemetry simulator (Python, Paho MQTT)
+- [`config/`](./config/) - Wellhead setpoint configurations (`WELL-001.yaml` with MAOP/MAASP)
+- [`database/`](./database/) - PostgreSQL + TimescaleDB initialization script (`init.sql`)
+- [`docker/`](./docker/) - Supervisord, Nginx, and Entrypoint scripts for unified container deployment
+- [`mosquitto/`](./mosquitto/) - Eclipse Mosquitto MQTT broker configuration
 
-## Running the Project
+---
 
-Build and run the all-in-one Docker image:
+## Quick Docker Deployment
+
+To build and run the unified container:
 
 ```bash
-cd wellhead-pressure-monitoring
-
 # Build the unified single container image
 docker build -t wellhead-monitoring:latest .
 
@@ -40,11 +30,6 @@ docker build -t wellhead-monitoring:latest .
 docker run -d --name wellhead_app -p 80:80 -p 8000:8000 -p 1883:1883 wellhead-monitoring:latest
 ```
 
-3. Access the dashboard at `http://localhost:80`
-4. Use the demo credentials to login:
-   - **Username:** admin
-   - **Password:** admin123
-
-## Simulated Data
-
-The simulator automatically generates random values around configured setpoints for tubing, flowline, choke, and annuli. This is pushed through an MQTT broker every 2 seconds, processed by the FastAPI backend, inserted to Redis for live extraction, and passed identically down to connected WebSocket clients for < 100ms lag rendering on the frontend.
+- **Dashboard UI**: `http://localhost:80`
+- **Default Login**: `admin` / `admin123`
+- **API Documentation**: `http://localhost:8000/docs`
